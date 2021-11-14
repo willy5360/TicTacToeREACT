@@ -1,13 +1,83 @@
 @import "~bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Orbitron&family=Russo+One&display=swap');
 
-/* 
+body{
+    background-image: linear-gradient( 68.3deg,  rgba(245,177,97,1) 0.4%, rgba(236,54,110,1) 100.2% );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;   
+    height: 100vh;
+}
+#app{
+    position: relative;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.Title_Winner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+}
+.Title_Winner h1, h5{
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+}
+.winner{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 15px;
+    padding: 15px;
+    width: fit-content;
+    height: fit-content;
+    color: rgba(255,255,255, 2);
+    animation: glow  1.5s infinite;
+    font-family: 'Fredoka One', cursive;
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+}
+@keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px #ffb20c ;
+      font-size: 27px;
+    }
+    to {
+      box-shadow: 0 0 15px 15px #ff7575;
+      font-size: 30px;
+    }
+}
 
-*/
+
+.container{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+.littleSquare{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin: 15px;
+    width: 10rem;
+    height: 10rem;
+    background-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    
+    font-size: 6vw;
+}
