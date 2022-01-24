@@ -1,9 +1,8 @@
-import { array } from "prop-types";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Square from "../component/Square.jsx";
 
 const Home = () => {
-	const [turn, setTurn] = useState(true); // Asignando true, decimos que empieza el primer jugador
+	const [turn, setTurn] = useState("🐔"); // Asignando true, decimos que empieza el primer jugador
 	const [title, setTitle] = useState(""); //
 	const [winnerTitle, setWinnerTitle] = useState("");
 	const [savedValuesArray, setSavedValuesArray] = useState(
@@ -13,24 +12,24 @@ const Home = () => {
 	const squareValueAndPosition = (value, squarePosition) => {
 		const squareValue = [...savedValuesArray]; // Array spreading, copia los valores del array
 
-		squareValue[squarePosition] = value; // value = true o false //
+		squareValue[squarePosition] = value; // value = 🐔 o 🥚 //
 		setSavedValuesArray(squareValue); // squareValue es un array que va guardadando los valores de los click
 
 		console.log("aqui los va rellenando", squareValue);
 
 		let winner = IsWinner(squareValue); // esto comprueba quien ha sido el ganador(si lo hay)
-		if (winner === true) setTitle("The chicken came first!!! 🐔🐔🐔");
-		if (winner === false) setTitle("Egg Rules!!! 🥚🥚🥚");
-		if (winner === true || winner === false) setWinnerTitle("winner");
+		if (winner === "🐔") setTitle("The chicken came first!!! 🐔🐔🐔");
+		if (winner === "🥚") setTitle("Egg Rules!!! 🥚🥚🥚");
+		if (winner === "🐔" || winner === "🥚") setWinnerTitle("winner");
 	};
 
-	// esta funcion hace que cambie de true a false, por lo tanto al segundo jugador
+	// esta funcion hace que cambie de 🐔 a 🥚, por lo tanto al segundo jugador
 	const Changeturn = () => {
-		setTurn(!turn);
+		turn == "🐔" ? setTurn("🥚") : setTurn("🐔");
 	};
 
 	const IsWinner = squareValue => {
-		// se le da por parametro un array con valores de true o false, y comprueba sus posiciones, si coninciden con la lista tenemos un ganador
+		// se le da por parametro un array con valores de 🐔 o 🥚, y comprueba sus posiciones, si coninciden con la lista tenemos un ganador
 		const WinnerNumbers = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -42,19 +41,13 @@ const Home = () => {
 			[2, 4, 6]
 		];
 		for (let position in WinnerNumbers) {
-			const [
-				firstClickedPosition,
-				secondClickedPosition,
-				thirdClickedPosition
-			] = WinnerNumbers[position];
+			const [firstPOS, secondPOS, thirdPOS] = WinnerNumbers[position];
 			if (
-				squareValue[firstClickedPosition] != null &&
-				squareValue[firstClickedPosition] ==
-					squareValue[secondClickedPosition] &&
-				squareValue[firstClickedPosition] ==
-					squareValue[thirdClickedPosition]
+				squareValue[firstPOS] != null &&
+				squareValue[firstPOS] == squareValue[secondPOS] &&
+				squareValue[firstPOS] == squareValue[thirdPOS]
 			) {
-				return squareValue[firstClickedPosition];
+				return squareValue[firstPOS];
 			}
 		}
 		return null;
@@ -67,7 +60,7 @@ const Home = () => {
 			<Square
 				key={index.toString()}
 				squarePosition={index}
-				turn={turn} // true o false (primer o segundo jugador)
+				turn={turn} // "🐔" o "🥚" (primer o segundo jugador)
 				Changeturn={Changeturn}
 				saveClickPosition={squareValueAndPosition}
 			/>

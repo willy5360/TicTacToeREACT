@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 const Square = props => {
 	const [value, setValue] = useState("");
 
 	const selecturn = turn => {
-		// asignamos que el primer jugador por true y el segundo por false
-		if (turn == true && value == "") setValue("🐔");
-		if (turn == false && value == "") setValue("🥚");
+		// asignamos que el primer jugador por 🐔 y el segundo por 🥚
+		if (turn == "🐔" && value == "") setValue("🐔");
+		if (turn == "🥚" && value == "") setValue("🥚");
 	};
 
 	return (
@@ -16,8 +16,7 @@ const Square = props => {
 			onClick={() => {
 				selecturn(props.turn);
 				props.Changeturn();
-				props.saveClickPosition(props.turn, props.squarePosition); // guarda true o false + la posicion
-				// console.log()
+				props.saveClickPosition(props.turn, props.squarePosition); // guarda 🐔 o 🥚 + la posicion
 			}}>
 			{value}
 		</div>
@@ -25,11 +24,10 @@ const Square = props => {
 };
 
 Square.propTypes = {
-	turn: PropTypes.bool,
+	turn: PropTypes.string,
 	Changeturn: PropTypes.func,
 	squarePosition: PropTypes.number,
-	saveClickPosition: PropTypes.func,
-	winner: PropTypes.func
+	saveClickPosition: PropTypes.func
 };
 
 export default Square;
